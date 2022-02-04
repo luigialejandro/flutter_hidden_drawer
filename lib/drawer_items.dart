@@ -4,22 +4,33 @@ import 'package:flutter_hidden_drawer/drawer_item.dart';
 //import 'package:hidden_drawer_example/model/drawer_item.dart';
 
 class DrawerItems {
-  static const home = DrawerItem(title: 'Home', icon: Icons.home);
-  static const explore = DrawerItem(title: 'Explore', icon: Icons.explore);
-  static const favorites = DrawerItem(title: 'Favorites', icon: Icons.favorite);
-  static const messages = DrawerItem(title: 'Messages', icon: Icons.mail);
-  static const profile =
-      DrawerItem(title: 'Profile', icon: Icons.verified_user);
-  static const settings = DrawerItem(title: 'Settings', icon: Icons.settings);
-  static const logout = DrawerItem(title: 'Logout', icon: Icons.logout);
+  static const checker =
+      DrawerItem(title: 'Verificador de códigos', icon: Icons.qr_code_scanner);
+  static const tutorials =
+      DrawerItem(title: 'Tutoriales', icon: Icons.smart_screen);
+  static const news =
+      DrawerItem(title: 'Noticias', icon: Icons.campaign_rounded);
+  static const indicators =
+      DrawerItem(title: 'Indicadores', icon: Icons.assessment_rounded);
+  static const calendar =
+      DrawerItem(title: 'Calendario fiscal', icon: Icons.calendar_view_month);
+  static const efirma =
+      DrawerItem(title: 'e.firma portable', icon: Icons.qr_code_rounded);
+  static const assess = DrawerItem(title: 'Valorar', icon: Icons.star_rounded);
+  static const about = DrawerItem(title: 'Acerca de', icon: Icons.article);
+  static const apps = DrawerItem(title: 'Otras aplicaciones', icon: Icons.apps);
+  static const logout = DrawerItem(title: 'Cerrar sesión', icon: Icons.logout);
 
   static final List<DrawerItem> all = [
-    home,
-    explore,
-    favorites,
-    messages,
-    profile,
-    settings,
+    checker,
+    tutorials,
+    news,
+    indicators,
+    calendar,
+    efirma,
+    assess,
+    about,
+    apps,
     logout,
   ];
 }
