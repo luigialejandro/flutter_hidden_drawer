@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hidden_drawer/card_item.dart';
 import 'package:flutter_hidden_drawer/drawer_menu_widget.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback openDrawer;
@@ -14,6 +15,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  var now = new DateTime.now();
+  var formatter = new DateFormat('dd-MM-yyyy');
+
   final List<MyTabs> _tabs = [
     new MyTabs(title: "lamc2402@gmail.com", color: Color(0xFFB10312B)),
     new MyTabs(title: "MOCL910224SB2", color: Color(0xFFB691C32)),
@@ -194,6 +198,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     Center(
                       child: Container(
                         //color: Colors.yellow,
+                        margin: EdgeInsets.only(top: 15),
                         height: 100,
                         width: 160,
                         child: Image.asset('assets/images/sat_movil.png'),
@@ -201,12 +206,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                     Center(
                       child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 10),
+                        margin: EdgeInsets.symmetric(vertical: 15),
                         child: Text(
                             'Bienvenid@ $_contribuyenteNombres $_contribuyenteApellidoPaterno $_contribuyenteApellidoMaterno',
                             style: TextStyle(fontSize: 20)),
                       ),
                     ),
+                    Center(
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                            'El día de hoy es: ${formatter.format(now).toString()}',
+                            style: TextStyle(fontSize: 20)),
+                      ),
+                    ),
+
                     //Center(
                     //  child: Container(
                     //    //color: Colors.green,
