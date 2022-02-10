@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hidden_drawer/drawer_item.dart';
+import 'package:flutter_hidden_drawer/home/drawer_item.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //import 'package:hidden_drawer_example/model/drawer_item.dart';
 
 class DrawerItems {
+  static const search = DrawerItem(title: 'Buscar', icon: Icons.search);
   static const checker =
       DrawerItem(title: 'Verificador de códigos', icon: Icons.qr_code_scanner);
   static const tutorials =
@@ -22,6 +23,7 @@ class DrawerItems {
   static const logout = DrawerItem(title: 'Cerrar sesión', icon: Icons.logout);
 
   static final List<DrawerItem> all = [
+    search,
     checker,
     tutorials,
     news,

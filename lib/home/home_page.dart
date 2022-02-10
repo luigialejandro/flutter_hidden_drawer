@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hidden_drawer/card_item.dart';
-import 'package:flutter_hidden_drawer/drawer_menu_widget.dart';
+import 'package:flutter_hidden_drawer/home/card_item.dart';
+import 'package:flutter_hidden_drawer/home/drawer_menu_widget.dart';
+import 'package:flutter_hidden_drawer/home/second_route.dart';
+import 'package:flutter_hidden_drawer/dialogs.dart';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +23,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final List<MyTabs> _tabs = [
     new MyTabs(title: "lamc2402@gmail.com", color: Color(0xFFB10312B)),
     new MyTabs(title: "MOCL910224SB2", color: Color(0xFFB691C32)),
-    new MyTabs(title: "Buzón activo", color: Color(0xFFB6F7271))
+    new MyTabs(title: "Buzón activo", color: Color(0xFFB10312B))
   ];
 
   String _contribuyenteNombres = "Luis Alejandro";
@@ -35,6 +37,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _controller = new TabController(length: 3, vsync: this);
     _myHandler = _tabs[0];
     _controller.addListener(_handleSelected);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+
+    super.dispose();
   }
 
   void _handleSelected() {
@@ -134,6 +143,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(_myHandler.title,
             style: TextStyle(
@@ -150,7 +160,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: MySearchDelegate(),
+              );
+            },
           ),
         ],
         bottom: TabBar(
@@ -195,14 +210,62 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Center(
-                      child: Container(
-                        //color: Colors.yellow,
-                        margin: EdgeInsets.only(top: 15),
-                        height: 100,
-                        width: 160,
-                        child: Image.asset('assets/images/sat_movil.png'),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          //color: Colors.blue[500],
+                          margin: EdgeInsets.only(top: 15),
+                          height: 100,
+                          width: (MediaQuery.of(context).size.width - 8) / 3,
+                        ),
+                        Container(
+                          //color: Colors.red[100],
+                          margin: EdgeInsets.only(top: 15),
+                          height: 100,
+                          width: (MediaQuery.of(context).size.width - 8) / 3,
+                          child: Image.asset('assets/images/sat_movil.png'),
+                        ),
+                        Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(top: 15),
+                                    //color: Colors.red,
+                                    height: 60,
+                                    width: (MediaQuery.of(context).size.width -
+                                            8) /
+                                        6,
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 15),
+                                    //color: Colors.teal,
+                                    height: 60,
+                                    width: (MediaQuery.of(context).size.width -
+                                            8) /
+                                        6,
+                                    child: InfoCustomDialogsButton(
+                                        title: 'Mi Espacio',
+                                        descriptions:
+                                            'Puedes ingresar a los Trámites y Servicios de la aplicación, para consultar información, así como acceder a los trámites y servicios que ofrece el SAT.',
+                                        text: 'Aceptar'),
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                //color: Colors.indigoAccent,
+                                height: 40,
+                                width:
+                                    (MediaQuery.of(context).size.width - 8) / 3,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                     Center(
                       child: Container(

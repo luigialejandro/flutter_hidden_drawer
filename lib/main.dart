@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hidden_drawer/drawer_widget.dart';
-import 'package:flutter_hidden_drawer/home_page.dart';
+import 'package:flutter_hidden_drawer/home/drawer_item.dart';
+import 'package:flutter_hidden_drawer/home/drawer_items.dart';
+import 'package:flutter_hidden_drawer/home/drawer_widget.dart';
+import 'package:flutter_hidden_drawer/home/home_page.dart';
+import 'package:flutter_hidden_drawer/home/second_route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +38,7 @@ class _MainPageState extends State<MainPage> {
   late double yOffset;
   late double scaleFactor;
   late bool isDrawerOpen;
+  DrawerItem item = DrawerItems.search;
 
   @override
   void initState() {
@@ -69,7 +73,17 @@ class _MainPageState extends State<MainPage> {
       );
 
   Widget buildDrawer() => SafeArea(
-        child: Container(width: xOffset, child: DrawerWidget()),
+        child: Container(
+            width: xOffset,
+            child: DrawerWidget(
+              onSelectedItem: (item) {
+                switch (item) {
+                  case DrawerItems.search:
+                    showSearch(context: context, delegate: MySearchDelegate());
+                  //aquí, anexar la lógica a desencadenar al elegir los otros casos
+                }
+              },
+            )),
       );
 
   Widget buildPage() {
@@ -90,8 +104,12 @@ class _MainPageState extends State<MainPage> {
           transform: Matrix4.translationValues(xOffset, yOffset, 0)
             ..scale(scaleFactor),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(isDrawerOpen ? 20 : 0),
-            child: Container(child: HomePage(openDrawer: openDrawer)),
+            borderRadius: BorderRadius.circular(isDrawerOpen ? 30 : 0),
+            child: Container(
+              child: AbsorbPointer(
+                  absorbing: isDrawerOpen,
+                  child: HomePage(openDrawer: openDrawer)),
+            ),
           ),
         ),
       ),
